@@ -1,0 +1,4 @@
+[submodule "applications/example"]
+	path = applications/example
+	url = https://github.com/rdehaan/tinysatviz-example
+	branch = main
