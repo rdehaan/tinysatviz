@@ -521,6 +521,11 @@ var initSolver = function () {
 
     for (var i = 0; i < clauses.length; ++i) {
       if (clauses[i].length == 1) {
+        interface_propagate(clauses[i][0]);
+        if (!should_abort) {
+          await sleep(interface_wait_time_propagate());
+          await wait_until_allowed_to_continue();
+        }
         pushAssignment(clauses[i][0], []);
       }
     }
@@ -553,6 +558,10 @@ var initSolver = function () {
       // logger("- - - - - - - - - - -");
 
       var conflict = use_2wl ? await propagate_2wl() : await propagate();
+      if (!should_abort) {
+        await sleep(interface_wait_time_propagate_round());
+        await wait_until_allowed_to_continue();
+      }
 
       if (conflict) {
         var learnt = use_1uip ? analyze_1uip(conflict.reason) : analyze(conflict.reason);
