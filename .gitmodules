@@ -2,3 +2,7 @@
 	path = applications/example
 	url = https://github.com/rdehaan/tinysatviz-example
 	branch = main
+[submodule "applications/sudoku"]
+	path = applications/sudoku
+	url = https://github.com/rdehaan/tinysatviz-sudoku
+	branch = main
