@@ -226,7 +226,7 @@ var initSolver = function () {
             pushAssignment(clauses[i][0], clauses[i]);
 
             interface_propagate(clauses[i][0]);
-            if (!should_abort) {
+            if (!should_abort && interface_wait_time_propagate != null) {
               await sleep(interface_wait_time_propagate());
               await wait_until_allowed_to_continue();
             }
@@ -300,7 +300,7 @@ var initSolver = function () {
             };
           } else {
             interface_propagate(clauses[i][0]);
-            if (!should_abort) {
+            if (!should_abort && interface_wait_time_propagate != null) {
               await sleep(interface_wait_time_propagate());
               await wait_until_allowed_to_continue();
             }
@@ -522,7 +522,7 @@ var initSolver = function () {
     for (var i = 0; i < clauses.length; ++i) {
       if (clauses[i].length == 1) {
         interface_propagate(clauses[i][0]);
-        if (!should_abort) {
+        if (!should_abort && interface_wait_time_propagate != null) {
           await sleep(interface_wait_time_propagate());
           await wait_until_allowed_to_continue();
         }
@@ -558,6 +558,7 @@ var initSolver = function () {
       // logger("- - - - - - - - - - -");
 
       var conflict = use_2wl ? await propagate_2wl() : await propagate();
+      interface_done_propagating();
       if (!should_abort) {
         await sleep(interface_wait_time_propagate_round());
         await wait_until_allowed_to_continue();
