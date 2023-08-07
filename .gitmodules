@@ -6,3 +6,7 @@
 	path = applications/sudoku
 	url = https://github.com/rdehaan/tinysatviz-sudoku
 	branch = main
+[submodule "applications/clause-display"]
+	path = applications/clause-display
+	url = https://github.com/rdehaan/tinysatviz-clause-display
+	branch = main
